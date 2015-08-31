@@ -29,7 +29,7 @@ namespace Lemmator
             }
             else if(args.Length == 2)
             {
-                logError("Missing argument");
+                Logger.logError("Missing argument");
             }
             else if(args.Length == 3)
             {
@@ -70,7 +70,7 @@ namespace Lemmator
             }
             catch (Exception e)
             {
-                logError("File {0} could not be read.", path);
+                Logger.logError("File {0} could not be read.", path);
                 return "";
             }
         }
@@ -94,11 +94,11 @@ namespace Lemmator
                 new FileInfo(resultPath).Directory.Create();
                 System.IO.File.WriteAllLines(resultPath, lemmatizedText);
 
-                Console.WriteLine("Written output file: {0}", resultPath);
+               Logger.logInfo("Written output file: {0}", resultPath);
             }
             catch (Exception e)
             {
-               logError(e.Message);
+               Logger.logError(e.Message);
             }
         }
 
@@ -120,17 +120,6 @@ namespace Lemmator
             Console.WriteLine("Lemmatisation language set to: {0}", languageNameLog);
 
             return language;
-        }
-
-        private static void logError(string message, params object[] args)
-        {
-            message = "[ERROR] " + message;
-
-            Console.ForegroundColor = ConsoleColor.Red;
-
-            Console.WriteLine(message, args);
-
-            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
