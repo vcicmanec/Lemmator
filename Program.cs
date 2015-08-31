@@ -13,7 +13,7 @@ namespace Lemmator
         static void Main(string[] args)
         {
             ILemmatizer lemmatizer = new LemmatizerPrebuiltCompact(getLanguage(args[0]));
-
+            
             if(args.Length == 0 || args.Length == 1)
             {
                 Console.WriteLine("Batch-processing all files contained in the subfolder 'lemma-source' into 'lemma-output'");
@@ -25,9 +25,17 @@ namespace Lemmator
                     processFile(file, lemmatizer);
                 }
             }
+            else if(args.Length == 2)
+            {
+                Console.WriteLine("Missing argument");
+            }
+            else if(args.Length == 3)
+            {
+                processFile(args[1], lemmatizer, args[2]);
+            }
         }
 
-        private static void processFile(string path, ILemmatizer lemmatizer)
+        private static void processFile(string path, ILemmatizer lemmatizer, string targetPath = null)
         {
             Console.WriteLine("Processing file {0}", new FileInfo(path).Name);
 
@@ -40,7 +48,7 @@ namespace Lemmator
                 resultList.Add(processWord(word, lemmatizer));
             }
 
-            writeOutputFile(resultList.ToArray(), path);
+            writeOutputFile(resultList.ToArray(), path, targetPath);
         }
 
         private static string processWord(string word, ILemmatizer lemmatizer)
@@ -75,9 +83,9 @@ namespace Lemmator
             return result;
         }
 
-        private static void writeOutputFile(string[] lemmatizedText, string sourcePath)
+        private static void writeOutputFile(string[] lemmatizedText, string sourcePath, string targetPath = null)
         {
-            string resultPath = sourcePath.Replace("lemma-source", "lemma-output");
+            string resultPath = targetPath != null ? targetPath : sourcePath.Replace("lemma-source", "lemma-output");
 
             try
             {
