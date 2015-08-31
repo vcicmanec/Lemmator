@@ -38,7 +38,7 @@ namespace Lemmator
 
         private static ConsoleColor getConsoleColor(LogLevel level)
         {
-            ConsoleColor result = ConsoleColor.White;
+            ConsoleColor result = defaultConsoleColor;
 
             switch (level)
             {
