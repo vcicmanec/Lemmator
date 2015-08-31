@@ -22,6 +22,11 @@ namespace Lemmator
             internalLog(LogLevel.Info, message, args);
         }
 
+        public static void logWarning(string message, params object[] args)
+        {
+            internalLog(LogLevel.Warning, message, args);
+        }
+
         private static void internalLog(LogLevel level, string message, params object[] args)
         {
             if ((int)level < LOG_LEVEL)
@@ -49,6 +54,10 @@ namespace Lemmator
                 case LogLevel.Info:
                     result = ConsoleColor.Cyan;
                     break;
+
+                case LogLevel.Warning:
+                    result = ConsoleColor.DarkYellow;
+                    break;
             }
 
             return result;
@@ -66,6 +75,10 @@ namespace Lemmator
 
                 case LogLevel.Info:
                     result = "[INFO]";
+                    break;
+
+                case LogLevel.Warning:
+                    result = "[WARN]";
                     break;
             }
 
