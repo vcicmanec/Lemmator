@@ -112,6 +112,7 @@ namespace Lemmator
             switch (languageParam)
             {
                 case "cs":
+                case "cz":
                     language = LemmaSharp.LanguagePrebuilt.Czech;
                     languageNameLog = "Czech";
                     break;
