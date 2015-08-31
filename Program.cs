@@ -29,7 +29,7 @@ namespace Lemmator
             }
             else if(args.Length == 2)
             {
-                Console.WriteLine("!!! Error !!! - Missing argument");
+                logError("Missing argument");
             }
             else if(args.Length == 3)
             {
@@ -70,7 +70,7 @@ namespace Lemmator
             }
             catch (Exception e)
             {
-                Console.WriteLine("File {0} could not be read.", path);
+                logError("File {0} could not be read.", path);
                 return "";
             }
         }
@@ -98,9 +98,8 @@ namespace Lemmator
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+               logError(e.Message);
             }
-
         }
 
         private static LanguagePrebuilt getLanguage(string languageParam)
@@ -121,6 +120,17 @@ namespace Lemmator
             Console.WriteLine("Lemmatisation language set to: {0}", languageNameLog);
 
             return language;
+        }
+
+        private static void logError(string message, params object[] args)
+        {
+            message = "[ERROR] " + message;
+
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            Console.WriteLine(message, args);
+
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
