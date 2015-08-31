@@ -17,7 +17,7 @@ namespace Lemmator
 
             if (sourceExists)
             {
-                processDirectory(Directory.GetCurrentDirectory() + "\\lemma-source");
+                result = processDirectory(Directory.GetCurrentDirectory() + "\\lemma-source");
 
                 Console.WriteLine("Found {0} .txt files in the current path", result.Length);
             }
