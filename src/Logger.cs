@@ -10,6 +10,8 @@ namespace Lemmator
     {
         private const int LOG_LEVEL = (int)LogLevel.Debug;
 
+        private static ConsoleColor defaultConsoleColor = Console.ForegroundColor;
+
         public static void logError(string message, params object[] args)
         {
             internalLog(LogLevel.Error, message, args);
@@ -74,7 +76,7 @@ namespace Lemmator
 
         private static void resetConsoleColor()
         {
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = defaultConsoleColor;
         }
     }
 }
