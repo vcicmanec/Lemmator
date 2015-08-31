@@ -27,7 +27,7 @@ namespace Lemmator
             }
             else if(args.Length == 2)
             {
-                Console.WriteLine("Missing argument");
+                Console.WriteLine("!!! Error !!! - Missing argument");
             }
             else if(args.Length == 3)
             {
@@ -76,7 +76,7 @@ namespace Lemmator
         private static string[] prepareFileContent(string content)
         {
             string[] result = content.Split(
-                new char[] {' ', ' ', ',', '.', ')', '(', '!', '?', ';', '-', '–','"'},
+                new char[] {' ', ' ', ',', '.', ')', '(', '!', '?', ';', '-', '–','"', '{', '}', '/', '\\'},
                 StringSplitOptions.RemoveEmptyEntries
                 );
 
