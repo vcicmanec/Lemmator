@@ -12,9 +12,11 @@ namespace Lemmator
     {
         static void Main(string[] args)
         {
-            ILemmatizer lemmatizer = new LemmatizerPrebuiltCompact(getLanguage(args[0]));
-            
-            if(args.Length == 0 || args.Length == 1)
+            LanguagePrebuilt language = args != null && args.Length > 0 ? getLanguage(args[0]) : getLanguage("default");
+
+            ILemmatizer lemmatizer = new LemmatizerPrebuiltCompact(language);
+
+            if (args.Length == 0 || args.Length == 1)
             {
                 Console.WriteLine("Batch-processing all files contained in the subfolder 'lemma-source' into 'lemma-output'");
 
