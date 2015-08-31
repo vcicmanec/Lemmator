@@ -142,16 +142,26 @@ namespace Lemmator
         /// <returns></returns>
         private static LanguagePrebuilt getLanguage(string languageParam)
         {
-            LanguagePrebuilt language = LemmaSharp.LanguagePrebuilt.Slovak;
-
-            string languageNameLog = "Slovak";
+            LanguagePrebuilt language;
+            string languageNameLog;
 
             switch (languageParam)
             {
+                case "sk":
+                    language = LemmaSharp.LanguagePrebuilt.Slovak;
+                    languageNameLog = "Slovak";
+                    break;
+
                 case "cs":
                 case "cz":
                     language = LemmaSharp.LanguagePrebuilt.Czech;
                     languageNameLog = "Czech";
+                    break;
+
+                default:
+                    language = LemmaSharp.LanguagePrebuilt.Slovak;
+                    languageNameLog = "Slovak";
+                    Logger.logWarning("Language type {0} not available, defaulting to Slovak", languageParam);
                     break;
             }
 
