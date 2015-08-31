@@ -35,6 +35,10 @@ namespace Lemmator
             {
                 processFile(args[1], lemmatizer, args[2]);
             }
+            else
+            {
+                Logger.logError("Argument count mismatch, expected max 3 received {0}", args.Length.ToString());
+            }
         }
 
         /// <summary>
