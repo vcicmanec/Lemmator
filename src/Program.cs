@@ -37,6 +37,13 @@ namespace Lemmator
             }
         }
 
+        /// <summary>
+        /// Processes single file specified in the path parameter. If targetPath is specified, the result will be written in that location.
+        /// If targetPath is not specified, result path will be built by replacing 'lemma-source' by 'lemma-output' in the original file path.
+        /// </summary>
+        /// <param name="path">file location</param>
+        /// <param name="lemmatizer">Lemmatizer from lemmagen that should process the file</param>
+        /// <param name="targetPath">target file location and name</param>
         private static void processFile(string path, ILemmatizer lemmatizer, string targetPath = null)
         {
             Console.WriteLine("Processing file {0}", new FileInfo(path).Name);
@@ -53,11 +60,22 @@ namespace Lemmator
             writeOutputFile(resultList.ToArray(), path, targetPath);
         }
 
+        /// <summary>
+        /// Converts single word to lowercase and lemmatizes
+        /// </summary>
+        /// <param name="word"></param>
+        /// <param name="lemmatizer"></param>
+        /// <returns></returns>
         private static string processWord(string word, ILemmatizer lemmatizer)
         {
             return lemmatizer.Lemmatize(word.ToLower());
         }
 
+        /// <summary>
+        /// Opens a file and returns its contents
+        /// </summary>
+        /// <param name="path">File location</param>
+        /// <returns></returns>
         private static string readFile(string path)
         {
            try
@@ -75,6 +93,11 @@ namespace Lemmator
             }
         }
 
+        /// <summary>
+        /// Prepares the file content by removing spaces and punctuation and splitting it into a string array
+        /// </summary>
+        /// <param name="content">The content of the loaded file (or string to be lemmatized)</param>
+        /// <returns></returns>
         private static string[] prepareFileContent(string content)
         {
             string[] result = content.Split(
@@ -102,6 +125,12 @@ namespace Lemmator
             }
         }
 
+        /// <summary>
+        /// Retrieves the language parameter required for lemmatizer initialization based on command line parameter. 
+        /// If no argument is passed, it defaults to Slovak
+        /// </summary>
+        /// <param name="languageParam"></param>
+        /// <returns></returns>
         private static LanguagePrebuilt getLanguage(string languageParam)
         {
             LanguagePrebuilt language = LemmaSharp.LanguagePrebuilt.Slovak;
