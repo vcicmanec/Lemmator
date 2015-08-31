@@ -78,14 +78,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Lemmator.exe" size="7168">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Lemmator.exe" size="7680">
       <assemblyIdentity name="Lemmator" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ETt3L7pjtKgtrHPXmnUTMuJQiEJlEFvw7m2NMxEguZk=</dsig:DigestValue>
+        <dsig:DigestValue>x+NHmu7j0viusChwZsSXI2Gk+qlCiOXESOEJeRQpXh4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
