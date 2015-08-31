@@ -52,7 +52,12 @@ namespace Lemmator
         {
             Console.WriteLine("Processing file {0}", new FileInfo(path).Name);
 
-            string[] wordList = prepareFileContent(readFile(path));
+            string fileContent = readFile(path);
+
+            if (fileContent == null)
+                return;
+
+            string[] wordList = prepareFileContent(fileContent);
 
             List<string> resultList = new List<string>();
 
@@ -93,7 +98,7 @@ namespace Lemmator
             catch (Exception e)
             {
                 Logger.logError("File {0} could not be read.", path);
-                return "";
+                return null;
             }
         }
 
