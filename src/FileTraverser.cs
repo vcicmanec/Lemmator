@@ -11,9 +11,16 @@ namespace Lemmator
     {
         public static string[] getFileList()
         {
-            string[] result = processDirectory(Directory.GetCurrentDirectory() + "\\lemma-source");
+            string[] result = new string[] { };
 
-            Console.WriteLine("Found {0} .txt files in the current path", result.Length);
+            bool sourceExists = sourceFolderExists();
+
+            if (sourceExists)
+            {
+                processDirectory(Directory.GetCurrentDirectory() + "\\lemma-source");
+
+                Console.WriteLine("Found {0} .txt files in the current path", result.Length);
+            }
 
             return result;
         }
@@ -31,6 +38,20 @@ namespace Lemmator
 
 
             return files;
+        }
+
+        private static bool sourceFolderExists()
+        {
+            try
+            {
+                Directory.GetDirectories(Directory.GetCurrentDirectory() + "\\lemma-source");
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logger.logError("Folder lemma-source could not be found");
+                return false;
+            }
         }
     }
 }
