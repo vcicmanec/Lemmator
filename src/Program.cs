@@ -12,7 +12,7 @@ namespace Lemmator
     {
         static void Main(string[] args)
         {
-            LanguagePrebuilt language = args != null && args.Length > 0 ? getLanguage(args[0]) : getLanguage("default");
+            LanguagePrebuilt language = args != null && args.Length > 0 ? getLanguage(args[0]) : getLanguage();
 
             ILemmatizer lemmatizer = new LemmatizerPrebuiltCompact(language);
 
@@ -140,7 +140,7 @@ namespace Lemmator
         /// </summary>
         /// <param name="languageParam"></param>
         /// <returns></returns>
-        private static LanguagePrebuilt getLanguage(string languageParam)
+        private static LanguagePrebuilt getLanguage(string languageParam = "sk")
         {
             LanguagePrebuilt language;
             string languageNameLog;
@@ -161,7 +161,9 @@ namespace Lemmator
                 default:
                     language = LemmaSharp.LanguagePrebuilt.Slovak;
                     languageNameLog = "Slovak";
-                    Logger.logWarning("Language type {0} not available, defaulting to Slovak", languageParam);
+
+                    if(languageParam != null)
+                        Logger.logWarning("Language type {0} not available, defaulting to Slovak", languageParam);
                     break;
             }
 
