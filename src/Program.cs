@@ -110,7 +110,7 @@ namespace Lemmator
         private static string[] prepareFileContent(string content)
         {
             string[] result = content.Split(
-                new char[] {' ', ' ', ',', '.', ')', '(', '!', '?', ';', '-', '–','"', '{', '}', '/', '\\'},
+                new char[] {' ', ' ', ',', '.', ')', '(', '!', '?', ';', '-', '–','"', '{', '}', '/', '\\', '„', '“'},
                 StringSplitOptions.RemoveEmptyEntries
                 );
 
